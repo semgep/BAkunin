@@ -1,0 +1,22 @@
+body {
+  font: x-large Calibri;
+  text-align: justify;
+}
+p {
+  text-indent: 3%;
+}
+img {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.scale:hover {
+  transform: scale(1.5);
+}
+.header {
+  font: bold italic x-large Arial;
+  line-height: 60%;
+  text-align: center;
+}
+.header a img {
+  height: 6rem;
+}

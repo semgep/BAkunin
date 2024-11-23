@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Календарь</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script>
+      function newPage() {
+        opt = { month: "2-digit", day: "2-digit" };
+        data = new Date().toLocaleDateString("en", opt).replace("/", "");
+        // console.log(data + "/" + data + "/" + ".html");
+        window.location.href = data + "/" + data + ".html";
+      }
+    </script>
+  </head>
+  <body onload="newPage()"></body>
+</html>
