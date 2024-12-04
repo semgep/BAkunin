@@ -9,6 +9,17 @@ function updatePage() {
   }
 }
 function myHead() {
+  console.log(Notification.permission);
+  if (Notification.permission === "default") {
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        console.log("Notifications are allowed.");
+      } else {
+        console.log("Notifications are denied.");
+      }
+    });
+  }
+
   let fileMonth = window.location.href.slice(-9, -7);
   let fileDay = window.location.href.slice(-7, -5);
   headDate = new Date(new Date().getFullYear(), fileMonth - 1, fileDay);
