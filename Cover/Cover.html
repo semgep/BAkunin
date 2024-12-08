@@ -3,26 +3,31 @@
   <head>
     <title>Мой Календарь</title>
     <link rel="icon" href="../Styles/weekend.ico" type="image/x-icon" />
-    <link href="../Styles/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/style.css"  />
     <script src="../JS/FuncJS.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </head>
-  <body onload="nextPage()">
+  <body onload="toolTip(); nextPage()">
     <div class="header">
       <span>Борис Акунин</span><br /><br />
       <span>МОЙ КАЛЕНДАРЬ</span>
-    </div>
+    </div><br>
+    <img
+      align="left" src="cover.jpg"
+      title="Жми сюда для перехода&#10;на сегодняшний день"
+      onmouseover="this.src='BAkunin.jpg';"
+      onmouseout="this.src='cover.jpg';"
+      onclick="updatePage()"
+    />
     <p>Каждый день - это матч, который можно выиграть или проиграть.</p>
     <p>
       Когда-то я сделал для себя открытие — такое же, уверен, как очень многие:
       на матч надо выходить в правильном настроении, тогда шансы на победу
       возрастают.
     </p>
-    <img
-      align="left" src="cover.jpg"
-      onmouseover="this.src='BAkunin.jpg';"
-      onmouseout="this.src='cover.jpg';"
-      onclick="updatePage()"
-    />
+    
     <p>Что ж, правильное настроение можно себе создать.</p>
     <p>
       Именно с этого я начинаю каждый свой день. В зависимости от того, что

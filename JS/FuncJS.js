@@ -34,3 +34,13 @@ function nextPage() {
   let delay = nextDay - Date.now() + 60 * 1000;
   setTimeout(updatePage, delay);
 }
+function toolTip() {
+  document.addEventListener("DOMContentLoaded", function () {
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll("[title]")
+    );
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl, { html: true });
+    });
+  });
+}
