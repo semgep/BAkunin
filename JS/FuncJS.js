@@ -44,6 +44,7 @@ function toolTip() {
     });
   });
 }
+Hyphenator.patterns({ ru: "../patterns/ru.js" });
 Hyphenator.config({
   minwordlength: 4,
   defaultlanguage: "ru",
