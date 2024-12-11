@@ -44,3 +44,11 @@ function toolTip() {
     });
   });
 }
+Hyphenator.config({
+  minwordlength: 4,
+  defaultlanguage: "ru",
+  selectorfunction: function () {
+    return document.querySelectorAll("p");
+  },
+});
+Hyphenator.run();
