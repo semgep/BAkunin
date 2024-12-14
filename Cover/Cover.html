@@ -3,45 +3,59 @@
   <head>
     <title>Мой Календарь</title>
     <link rel="icon" href="../Styles/weekend.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../Styles/style.css"  />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../Styles/style.css" />
     <script src="../JS/FuncJS.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-      .text-cell  {vertical-align: middle; width: 95%;}
-      .image-cell {vertical-align: middle; width: 5%; }
+      .table {
+        font: large Cursive;
+        line-height: 0.5;
+      }
+      td:first-child {
+        width: 20%;
+        padding-left: 3%;
+      }
+      td:last-child {
+        width: 90%;
+      }
     </style>
   </head>
-  <body onload="toolTip(); nextPage()">
+  <body onload="nextPage()">
     <div class="header">
       <table>
-          <tr>
-              <td class="text-cell">
-                  <span>Борис Акунин<br><br>МОЙ КАЛЕНДАРЬ</span>
-              </td>
-              <td class="image-cell">
-                  <img id="MntSrc"> 
-                  <a id="toDay"</a>
-              </td>
-          </tr>
+        <tr style="vertical-align: middle">
+          <td style="width: 95%">
+            <span>Борис Акунин<br /><br />МОЙ КАЛЕНДАРЬ</span>
+          </td>
+          <td style="width: 5%">
+            <img
+              src="../Styles/today.png"
+              title="Сегодня"
+              onclick="updatePage()"
+            />
+          </td>
+        </tr>
       </table>
-  </div>
-    <br>
+    </div>
+    <br />
     <img
-      align="left" src="cover.jpg"
-      title="Жми сюда для перехода&#10;на сегодняшний день"
+      align="left"
+      src="cover.jpg"
       onmouseover="this.src='BAkunin.jpg';"
       onmouseout="this.src='cover.jpg';"
       onclick="updatePage()"
     />
     <p>Каждый день - это матч, который можно выиграть или проиграть.</p>
     <p>
-      Когда-то я сделал для себя открытие — такое же, уверен, как очень многие:
+      Когда-то я сделал для себя открытие - такое же, уверен, как очень многие:
       на матч надо выходить в правильном настроении, тогда шансы на победу
       возрастают.
     </p>
-    
     <p>Что ж, правильное настроение можно себе создать.</p>
     <p>
       Именно с этого я начинаю каждый свой день. В зависимости от того, что
@@ -50,11 +64,11 @@
     </p>
     <p>
       Если бы я был композитором, я бы сделал календарь из 366 утренних мелодий,
-      если бы я был поэт — сочинил бы 366 утренних стихотворений. Потому что
+      если бы я был поэт - сочинил бы 366 утренних стихотворений. Потому что
       каждый день уникальный.
     </p>
     <p>
-      Ну а поскольку я исторический беллетрист, «Мой календарь» — это 372
+      Ну а поскольку я исторический беллетрист, «Мой календарь» - это 372
       маленьких истории. Вернее триста семьдесят два напоминания о том, что в
       этот самый день когда-то произошло что-то очень хорошее или очень важное.
       (372, а не 366, потому что я не хочу обижать ни один месяц, и в каждом из
@@ -67,37 +81,31 @@
       С утра переворачивайте страницу моего календаря, читайте по одной истории
       и настраивайтесь на победу в матче.
     </p>
-    <font size="4" face="Cursive"></font>
-      <ul style="text-align: left; line-height: 1.5">
-        <li>
-          <a href="../0230/0230.html">30 февраля </a>&nbsp;День страха</li>
-        <li>
-          <a href="../0231/0231.html">31 февраля </a>&nbsp;Самый черный день в году
-        </li>
-        <li>
-          <a href="../0431/0431.html">31 апреля </a>&nbsp;&nbsp;День злобы</li>
-        <li>
-          <a href="../0631/0631.html">31 июня </a>&nbsp;&nbsp;&nbsp;Не пройти мимо
-        </li>
-        <li>
-          <a href="../0931/0931.html">31 сентября</a>&nbsp;&nbsp;День, когда можно
-          падать духом
-        </li>
-        <li>
-          <a href="../1131/1131.html">31 ноября </a>&nbsp;&nbsp;&nbsp;День нелюбви
-        </li>
-      </ul>
-    </font>
-    <script>
-      toDay = new Date()
-      let now = toDay
-        .toLocaleDateString("en", { month: "2-digit", day: "2-digit" })
-        .replace("/", "");
-      const link = document.getElementById("toDay");
-      link.href = "../" + now + "/" + now + ".html";
-      link.textContent = toDay.getDate();
-      link.style.fontSize = "large";
-      document.getElementById("MntSrc").src="../Styles/M" +(toDay.getMonth()+1)+".png";
-    </script>
+    <table class="table" cols="2">
+      <tr>
+        <td><a href="../0230/0230.html">30 февраля</a></td>
+        <td>- День страха</td>
+      </tr>
+      <tr>
+        <td><a href="../0231/0231.html">31 февраля </a></td>
+        <td>- Самый черный день в году</td>
+      </tr>
+      <tr>
+        <td><a href="../0431/0431.html">31 апреля</a></td>
+        <td>- День злобы</td>
+      </tr>
+      <tr>
+        <td><a href="../0631/0631.html">31 июня</a></td>
+        <td>- Не пройти мимо</td>
+      </tr>
+      <tr>
+        <td><a href="../0931/0931.html">31 сентября</a></td>
+        <td>- День, когда можно падать духом</td>
+      </tr>
+      <tr>
+        <td><a href="../1131/1131.html">31 ноября</a></td>
+        <td>- День нелюбви</td>
+      </tr>
+    </table>
   </body>
 </html>
