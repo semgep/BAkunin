@@ -13,6 +13,11 @@ img {
 .scale:hover {
   transform: scale(1.5);
 }
+.scale {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .header {
   font: bold italic x-large Arial;
   line-height: 60%;

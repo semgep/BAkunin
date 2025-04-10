@@ -3,20 +3,13 @@
   <head>
     <title>Мой Календарь</title>
     <link rel="icon" href="../Styles/weekend.ico" type="image/x-icon" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    /> -->
     <link rel="stylesheet" href="../Styles/style.css" />
     <script src="../JS/Hyphenator.js"></script>
     <script src="../JS/ru.js"></script>
     <script src="../JS/FuncJS.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
     <style>
       .table {
         font: large Arial;
-        /* line-height: 1; */
       }
       td:first-child {
         width: 30%;
@@ -26,6 +19,11 @@
         width: 80%;
       }
     </style>
+    <script>
+      function returning() {
+        console.log(document.referrer);
+      }
+    </script>
   </head>
   <body onload="nextPage()">
     <div class="header">
@@ -38,7 +36,7 @@
             <img
               src="../Styles/today.png"
               title="Сегодня"
-              onclick="updatePage()"
+              onclick="window.location.href = '../../index.html'"
             />
           </td>
         </tr>
@@ -50,7 +48,10 @@
       src="cover.jpg"
       onmouseover="this.src='BAkunin.jpg';"
       onmouseout="this.src='cover.jpg';"
-      onclick="updatePage()"
+      <!--
+      onclick="returning()"
+      --
+    />
     />
     <p>Каждый день - это матч, который можно выиграть или проиграть.</p>
     <p>
@@ -85,31 +86,27 @@
     </p>
     <table class="table" cols="2">
       <tr>
-        <td><a href="../0229/0229.html">29 февраля</a></td>
-        <td>- Бонусный день</td>
-      </tr>
-      <tr>
-        <td><a href="../0230/0230.html">30 февраля</a></td>
+        <td><a href="../../index.html?date=30%20ФЕВРАЛЯ">30 февраля</a></td>
         <td>- День страха</td>
       </tr>
       <tr>
-        <td><a href="../0231/0231.html">31 февраля </a></td>
+        <td><a href="../../index.html?date=31%20ФЕВРАЛЯ">31 февраля </a></td>
         <td>- Самый черный день в году</td>
       </tr>
       <tr>
-        <td><a href="../0431/0431.html">31 апреля</a></td>
+        <td><a href="../../index.html?date=31%20АПРЕЛЯ">31 апреля</a></td>
         <td>- День злобы</td>
       </tr>
       <tr>
-        <td><a href="../0631/0631.html">31 июня</a></td>
+        <td><a href="../../index.html?date=31%20ИЮНЯ">31 июня</a></td>
         <td>- Не пройти мимо</td>
       </tr>
       <tr>
-        <td><a href="../0931/0931.html">31 сентября</a></td>
+        <td><a href="../../index.html?date=31%20СЕНТЯБРЯ">31 сентября</a></td>
         <td>- День, когда можно падать духом</td>
       </tr>
       <tr>
-        <td><a href="../1131/1131.html">31 ноября</a></td>
+        <td><a href="../../index.html?date=31%20НОЯБРЯ">31 ноября</a></td>
         <td>- День нелюбви</td>
       </tr>
     </table>

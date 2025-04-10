@@ -1,30 +1,73 @@
-function updatePage() {
-  console.log("updatePage");
-  let fileDate = window.location.href.slice(-9, -5);
-  let curDate = new Date()
-    .toLocaleDateString("en", { month: "2-digit", day: "2-digit" })
-    .replace("/", "");
-  if (fileDate != curDate) {
-    window.location.href = "../" + curDate + "/" + curDate + ".html";
+let db;
+let dbFileName = "Bakunin.s3db";
+let key, text;
+let html, img;
+
+async function initDB() {
+  const SQL = await initSqlJs({
+    locateFile: (filename) =>
+      `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${filename}`,
+  });
+  const response = await fetch(dbFileName);
+  const buffer = await response.arrayBuffer();
+  db = new SQL.Database(new Uint8Array(buffer));
+  console.log("База данных SQLite инициализирована!");
+}
+async function queryDB(mykey) {
+  let SQL = "SELECT key, value FROM Calendar WHERE key = ?";
+  return db.exec(SQL, [mykey]);
+}
+async function fetchData(md) {
+  const result = await queryDB(md);
+  if (result && result.length > 0 && result[0].values.length > 0) {
+    const row = result[0].values[0]; // берём первую строку
+    key = row[0];
+    text = row[1];
+    return [key, text];
+  } else {
+    console.log("Нет данных для отображения.");
   }
 }
-function myHead() {
-  let fileMonth = window.location.href.slice(-9, -7);
-  let fileDay = window.location.href.slice(-7, -5);
-  headDate = new Date(new Date().getFullYear(), fileMonth - 1, fileDay);
-  document.title = headDate.toLocaleDateString("ru", {
-    day: "numeric",
-    month: "long",
-  });
-  document.getElementById("myHead").textContent = headDate
-    .toLocaleDateString("ru", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    })
-    .replace("г.", "года");
+async function htmlFill() {
+  nextPage();
+  await initDB();
+  let curDay;
+  let prmDate = new URLSearchParams(window.location.search).get("date");
+  console.log(prmDate);
+  if (prmDate == null)
+    curDay = new Date()
+      .toLocaleDateString("ru-RU", { day: "numeric", month: "long" })
+      .toUpperCase();
+  else curDay = prmDate;
+  await fetchData(curDay);
+  html = text
+    .replace(/align="left"/g, "")
+    .replace("<h4", '<h4 align="center"')
+    .replace("l:href", "href");
+  console.log(html);
+  document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
-    "../Styles/" + fileMonth + ".ico";
+    "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
+  document.getElementById("myHead").innerHTML =
+    key.toLowerCase() +
+    " " +
+    new Date().getFullYear() +
+    " года <br><br>" +
+    text.slice(0, html.indexOf("$", 0));
+
+  await imgFill();
+  document.getElementById("text").innerHTML = html.slice(
+    html.indexOf("$", 0) + 1
+  );
+}
+async function imgFill() {
+  while (true) {
+    j = html.indexOf(".jpg");
+    if (j == -1) break;
+    let imgId = html.slice(j - 5, j);
+    await fetchData(imgId);
+    html = html.replace(imgId + ".jpg", "data:image/jpeg;base64," + text);
+  }
 }
 function nextPage() {
   let nextDay = new Date();
@@ -32,7 +75,7 @@ function nextPage() {
   nextDay.setHours(0, 0, 0, 0);
   console.log("next day: " + nextDay);
   let delay = nextDay - Date.now() + 60 * 1000;
-  setTimeout(updatePage, delay);
+  setTimeout(htmlFill, delay);
 }
 function toolTip() {
   document.addEventListener("DOMContentLoaded", function () {
@@ -44,6 +87,7 @@ function toolTip() {
     });
   });
 }
+
 Hyphenator.config({
   minwordlength: 4,
   defaultlanguage: "ru",

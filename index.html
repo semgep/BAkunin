@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Календарь</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script>
-      function newPage() {
-        opt = { month: "2-digit", day: "2-digit" };
-        data = new Date().toLocaleDateString("en", opt).replace("/", "");
-        // console.log(data + "/" + data + "/" + ".html");
-        window.location.href = data + "/" + data + ".html";
-      }
-    </script>
+    <link rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="Styles/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="JS/Hyphenator.js"></script>
+    <script src="JS/ru.js"></script>
+    <script src="JS/FuncJS.js"></script>
   </head>
-  <body onload="newPage()"></body>
-</html>
+  <body onload="
+  htmlFill(); 
+  // nextPage(); 
+  // updatePage()
+  ">
+    <!-- <input type="file" id="fileInput"> -->
+    <p align="center">Борис Акунин&nbsp;&nbsp;&nbsp;<br>
+      <font size="5" face="Trebuchet MS">
+        <a href="../Cover/Cover.html"><i>Мой календарь</i></a
+      </font>
+    </p>
+    <div class="header">
+      <span id="myHead"></span><br /><br />
+    </div>
+    <span id="text" >
+    </span>
