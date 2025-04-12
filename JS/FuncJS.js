@@ -44,7 +44,7 @@ async function htmlFill() {
     .replace(/align="left"/g, "")
     .replace("<h4", '<h4 align="center"')
     .replace("l:href", "href");
-  console.log(html);
+  // console.log(html);
   document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
     "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
