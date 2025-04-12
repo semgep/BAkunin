@@ -47,7 +47,9 @@ async function htmlFill() {
   // console.log(html);
   document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
-    "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
+    "/BAkunin/Styles/" +
+    String(new Date().getMonth() + 1).padStart(2, "0") +
+    ".ico";
   document.getElementById("myHead").innerHTML =
     key.toLowerCase() +
     " " +
