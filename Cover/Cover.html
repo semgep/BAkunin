@@ -4,7 +4,7 @@
     <title>Мой Календарь</title>
     <link rel="icon" href="/BAkunin/Styles/weekend.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../Styles/style.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
     <script src="../JS/Hyphenator.js"></script>
     <script src="../JS/ru.js"></script>
     <script src="../JS/FuncJS.js"></script>
@@ -21,7 +21,7 @@
       }
     </style>
   </head>
-  <body onload="nextPage()">
+  <body onload="nextPage('homepage')">
     <div class="header">
       <table>
         <tr style="vertical-align: middle">
@@ -32,7 +32,8 @@
             <img
               src="../Styles/today.png"
               title="Сегодня"
-              onclick="homePage()"            />
+              onclick="homePage()"
+            />
           </td>
         </tr>
       </table>
