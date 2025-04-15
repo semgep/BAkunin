@@ -50,6 +50,7 @@ async function htmlFill() {
   document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
     "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
+  console.log(document.getElementById("myHead"));
   document.getElementById("myHead").innerHTML =
     key.toLowerCase() +
     " " +
