@@ -1,5 +1,5 @@
-let db;
-let dbFileName = "Bakunin.s3db";
+let db, curDay;
+let dbFileName = "/BAkunin/Bakunin.s3db";
 let key, text;
 let html, img;
 
@@ -29,16 +29,18 @@ async function fetchData(md) {
   }
 }
 async function htmlFill() {
+  // console.log(tstmp(), "HTMLFILL ");
   nextPage();
   await initDB();
-  let curDay;
   let prmDate = new URLSearchParams(window.location.search).get("date");
-  console.log(prmDate);
-  if (prmDate == null)
+  if (prmDate == null || prmDate == curDay) {
     curDay = new Date()
       .toLocaleDateString("ru-RU", { day: "numeric", month: "long" })
       .toUpperCase();
-  else curDay = prmDate;
+  } else {
+    curDay = prmDate;
+  }
+  console.log(curDay);
   await fetchData(curDay);
   html = text
     .replace(/align="left"/g, "")
@@ -47,9 +49,7 @@ async function htmlFill() {
   // console.log(html);
   document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
-    "/BAkunin/Styles/" +
-    String(new Date().getMonth() + 1).padStart(2, "0") +
-    ".ico";
+    "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
   document.getElementById("myHead").innerHTML =
     key.toLowerCase() +
     " " +
@@ -71,13 +71,19 @@ async function imgFill() {
     html = html.replace(imgId + ".jpg", "data:image/jpeg;base64," + text);
   }
 }
-function nextPage() {
+function nextPage(prm) {
+  // console.log(tstmp(), "NEXTPAGE");
   let nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
   nextDay.setHours(0, 0, 0, 0);
-  console.log("next day: " + nextDay);
-  let delay = nextDay - Date.now() + 60 * 1000;
-  setTimeout(htmlFill, delay);
+  // console.log("next day: " + nextDay);
+  // let delay = nextDay - Date.now() + 60 * 1000;
+  let delay = 1 * 60 * 1000;
+  if (prm == undefined) setTimeout(htmlFill, delay);
+  else setTimeout(homePage, delay);
+}
+function homePage() {
+  window.location.href = "/BAkunin/index.html";
 }
 function toolTip() {
   document.addEventListener("DOMContentLoaded", function () {
@@ -88,6 +94,13 @@ function toolTip() {
       new bootstrap.Tooltip(tooltipTriggerEl, { html: true });
     });
   });
+}
+function tstmp() {
+  return (
+    new Date().toLocaleTimeString("ru-RU", { hour12: false }) +
+    "," +
+    String(new Date().getMilliseconds()).padStart(3, "0")
+  );
 }
 
 Hyphenator.config({

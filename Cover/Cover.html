@@ -4,6 +4,7 @@
     <title>Мой Календарь</title>
     <link rel="icon" href="/BAkunin/Styles/weekend.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../Styles/style.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
     <script src="../JS/Hyphenator.js"></script>
     <script src="../JS/ru.js"></script>
     <script src="../JS/FuncJS.js"></script>
@@ -31,8 +32,7 @@
             <img
               src="../Styles/today.png"
               title="Сегодня"
-              onclick="window.location.href = '/BAkunin/index.html'"
-            />
+              onclick="homePage()"            />
           </td>
         </tr>
       </table>
