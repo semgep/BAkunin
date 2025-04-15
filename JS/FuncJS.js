@@ -78,8 +78,8 @@ function nextPage(prm) {
   nextDay.setDate(nextDay.getDate() + 1);
   nextDay.setHours(0, 0, 0, 0);
   // console.log("next day: " + nextDay);
-  // let delay = nextDay - Date.now() + 60 * 1000;
-  let delay = 1 * 60 * 1000;
+  let delay = nextDay - Date.now() + 60 * 1000;
+  // let delay = 1 * 60 * 1000;
   if (prm == undefined) setTimeout(htmlFill, delay);
   else setTimeout(homePage, delay);
 }
