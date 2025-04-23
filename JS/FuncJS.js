@@ -47,7 +47,7 @@ async function htmlFill() {
     .replace("l:href", "href");
   document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
-    "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
+    "Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
   document.getElementById("myHead").innerHTML =
     key.toLowerCase() +
     " " +
@@ -73,7 +73,6 @@ function nextPage(prm) {
   let nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
   nextDay.setHours(0, 0, 0, 0);
-  // console.log("next day: " + nextDay);
   let delay = nextDay - Date.now() + 60 * 1000;
   // let delay = 1 * 60 * 1000;
   if (prm == undefined) setTimeout(htmlFill, delay);
