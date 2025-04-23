@@ -1,5 +1,5 @@
 let db, curDay;
-let dbFileName = "../Bakunin.s3db";
+let dbFileName = "/BAkunin/Bakunin.s3db";
 let key, text;
 let html, img;
 
