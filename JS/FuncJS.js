@@ -1,5 +1,5 @@
 let db, curDay;
-let dbFileName = "/BAkunin/Bakunin.s3db";
+let dbFileName = "../Bakunin.s3db";
 let key, text;
 let html, img;
 
@@ -11,7 +11,7 @@ async function initDB() {
   const response = await fetch(dbFileName);
   const buffer = await response.arrayBuffer();
   db = new SQL.Database(new Uint8Array(buffer));
-  console.log("База данных SQLite инициализирована!");
+  // console.log("База данных SQLite инициализирована!");
 }
 async function queryDB(mykey) {
   let SQL = "SELECT key, value FROM Calendar WHERE key = ?";
@@ -29,7 +29,6 @@ async function fetchData(md) {
   }
 }
 async function htmlFill() {
-  // console.log(tstmp(), "HTMLFILL ");
   nextPage();
   await initDB();
   let prmDate = new URLSearchParams(window.location.search).get("date");
@@ -40,17 +39,15 @@ async function htmlFill() {
   } else {
     curDay = prmDate;
   }
-  console.log(curDay);
   await fetchData(curDay);
+  curDay = prmDate;
   html = text
     .replace(/align="left"/g, "")
     .replace("<h4", '<h4 align="center"')
     .replace("l:href", "href");
-  // console.log(html);
   document.title = key.toLowerCase();
   document.querySelector('link[rel="icon"]').href =
     "../Styles/" + String(new Date().getMonth() + 1).padStart(2, "0") + ".ico";
-  console.log(document.getElementById("myHead"));
   document.getElementById("myHead").innerHTML =
     key.toLowerCase() +
     " " +
@@ -73,7 +70,6 @@ async function imgFill() {
   }
 }
 function nextPage(prm) {
-  // console.log(tstmp(), "NEXTPAGE");
   let nextDay = new Date();
   nextDay.setDate(nextDay.getDate() + 1);
   nextDay.setHours(0, 0, 0, 0);
