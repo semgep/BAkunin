@@ -113,32 +113,24 @@
       </tr>
     </table>
     <script>
-      const dayInput = document.getElementById("dayInput");
-      dayInput.addEventListener("change", () => {
-        console.log(dayInput.value);
-        const date = new Date(`${dayInput.value}T00:00:00Z`);
-        const formattedDate = new Intl.DateTimeFormat("ru-RU", {
-          day: "numeric",
-          month: "long",
-          timeZone: "UTC",
-        }).format(date);
-        console.log(formattedDate.toUpperCase());
-
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const formattedUrlDate = `${day} ${month}`; // Например: "22 8"
-
-        // Обновляем ссылку и текст
-        // otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
-        otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
-          formattedDate.toUpperCase()
-          // formattedUrlDate
-        )}`;
-        otherDayLink.textContent = formattedDate;
-        // otherDayLink.textContent = formattedDate.toUpperCase();
-
-        // Показываем скрытую строку
-        otherDayRow.style.display = "table-row";
+      // document.addEventListener("DOMContentLoaded", () => {
+      window.addEventListener("pageshow", (event) => {
+        otherDayRow.style.display = "none";
+        const dayInput = document.getElementById("dayInput");
+        dayInput.value = "";
+        dayInput.addEventListener("change", () => {
+          const date = new Date(`${dayInput.value}T00:00:00Z`);
+          const formattedDate = new Intl.DateTimeFormat("ru-RU", {
+            day: "numeric",
+            month: "long",
+            timeZone: "UTC",
+          }).format(date);
+          otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
+            formattedDate.toUpperCase()
+          )}`;
+          otherDayLink.textContent = formattedDate;
+          otherDayRow.style.display = "table-row";
+        });
       });
     </script>
   </body>
