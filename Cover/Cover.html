@@ -103,6 +103,43 @@
         <td><a href="/BAkunin/index.html?date=31%20НОЯБРЯ">31 ноября</a></td>
         <td>- День нелюбви</td>
       </tr>
+      <tr>
+        <td><input type="date" id="dayInput" /></td>
+        <td>- Выберите дату</td>
+      </tr>
+      <tr id="otherDayRow" style="display: none">
+        <td><a id="otherDayLink" href="#"></a></td>
+        <td>- Другой день</td>
+      </tr>
     </table>
+    <script>
+      const dayInput = document.getElementById("dayInput");
+      dayInput.addEventListener("change", () => {
+        console.log(dayInput.value);
+        const date = new Date(`${dayInput.value}T00:00:00Z`);
+        const formattedDate = new Intl.DateTimeFormat("ru-RU", {
+          day: "numeric",
+          month: "long",
+          timeZone: "UTC",
+        }).format(date);
+        console.log(formattedDate.toUpperCase());
+
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const formattedUrlDate = `${day} ${month}`; // Например: "22 8"
+
+        // Обновляем ссылку и текст
+        // otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
+        otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
+          formattedDate.toUpperCase()
+          // formattedUrlDate
+        )}`;
+        otherDayLink.textContent = formattedDate;
+        // otherDayLink.textContent = formattedDate.toUpperCase();
+
+        // Показываем скрытую строку
+        otherDayRow.style.display = "table-row";
+      });
+    </script>
   </body>
 </html>
