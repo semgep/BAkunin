@@ -19,25 +19,32 @@
       td:last-child {
         width: 80%;
       }
+      button {
+        border: none;
+        cursor: pointer;
+        color: blue;
+        background-color: white;
+        font-weight: bold;
+        font: large Arial;
+        width: 150px;
+        text-align: left;
+      }
     </style>
   </head>
   <body onload="nextPage('homepage')">
     <div class="header">
-      <table>
-        <tr style="vertical-align: middle">
-          <td style="width: 95%">
-            <span>Борис Акунин<br /><br />МОЙ КАЛЕНДАРЬ</span>
-          </td>
-          <td style="width: 5%">
-            <img
-              src="../Styles/today.png"
-              title="Сегодня"
-              onclick="homePage()"
-            />
-          </td>
-        </tr>
-      </table>
+      <p align="center">
+        Борис Акунин&nbsp;&nbsp;&nbsp;
+        <img
+          src="../Styles/today.png"
+          title="Сегодня"
+          onclick="homePage()"
+          align="right"
+        /><br /><br />
+        <span>МОЙ КАЛЕНДАРЬ</span>
+      </p>
     </div>
+
     <br />
     <img
       align="left"
@@ -104,20 +111,51 @@
         <td>- День нелюбви</td>
       </tr>
       <tr>
-        <td><input type="date" id="dayInput" /></td>
-        <td>- Выберите дату</td>
+        <td>
+          <button id="dateBtn" onclick="selectDate()">Другой день</button>
+        </td>
+        <td>
+          <input type="date" id="dayInput" style="display: none" />
+        </td>
       </tr>
+      <!-- <button id="selectBtn" onclick="selectRecord()" aria-label="Select">
+        🔎 Select
+      </button> -->
+      <!-- <tr id="otherDayRow" style="display: none">
+        <td></td>
+        <td>- Другой день</td>
+      </tr> -->
       <tr id="otherDayRow" style="display: none">
         <td><a id="otherDayLink" href="#"></a></td>
-        <td>- Другой день</td>
+        <td>- Мой день</td>
       </tr>
     </table>
     <script>
       // document.addEventListener("DOMContentLoaded", () => {
       window.addEventListener("pageshow", (event) => {
-        otherDayRow.style.display = "none";
         const dayInput = document.getElementById("dayInput");
-        dayInput.value = "";
+        dayInput.style.display = "none";
+        otherDayRow.style.display = "none";
+        // const dayInput = document.getElementById("dayInput");
+        // dayInput.value = "";
+        // dayInput.addEventListener("change", () => {
+        //   console.log("OK");
+
+        //   const date = new Date(`${dayInput.value}T00:00:00Z`);
+        //   const formattedDate = new Intl.DateTimeFormat("ru-RU", {
+        //     day: "numeric",
+        //     month: "long",
+        //     timeZone: "UTC",
+        //   }).format(date);
+        //   otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
+        //     formattedDate.toUpperCase()
+        //   )}`;
+        //   otherDayLink.textContent = formattedDate;
+        //   otherDayRow.style.display = "table-row";
+        // });
+      });
+      function selectDate() {
+        dayInput.style.display = "table-row";
         dayInput.addEventListener("change", () => {
           const date = new Date(`${dayInput.value}T00:00:00Z`);
           const formattedDate = new Intl.DateTimeFormat("ru-RU", {
@@ -130,8 +168,10 @@
           )}`;
           otherDayLink.textContent = formattedDate;
           otherDayRow.style.display = "table-row";
+          dayInput.style.display = "none";
+          dayInput.value = "";
         });
-      });
+      }
     </script>
   </body>
 </html>

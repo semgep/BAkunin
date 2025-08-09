@@ -18,6 +18,7 @@ async function queryDB(mykey) {
   return db.exec(SQL, [mykey]);
 }
 async function fetchData(md) {
+  console.log(md);
   const result = await queryDB(md);
   if (result && result.length > 0 && result[0].values.length > 0) {
     const row = result[0].values[0]; // берём первую строку
