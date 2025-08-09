@@ -20,15 +20,32 @@
         width: 80%;
       }
       button {
-        border: none;
+        /* border: none; */
+        border-radius: 8px;
         cursor: pointer;
         color: blue;
         background-color: white;
         font-weight: bold;
         font: large Arial;
-        width: 150px;
+        width: 120px;
         text-align: left;
       }
+      /* button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+  background-color: skyblue;
+  font-weight: bold;
+  font-size: 16px;
+} */
+      /* button:hover {
+        background-color: tan;
+      } */
     </style>
   </head>
   <body onload="nextPage('homepage')">
@@ -115,7 +132,11 @@
           <button id="dateBtn" onclick="selectDate()">Другой день</button>
         </td>
         <td>
-          <input type="date" id="dayInput" style="display: none" />
+          <input
+            type="date"
+            id="dayInput"
+            style="display: none; margin-left: 10px"
+          />
         </td>
       </tr>
       <!-- <button id="selectBtn" onclick="selectRecord()" aria-label="Select">
@@ -131,28 +152,10 @@
       </tr>
     </table>
     <script>
-      // document.addEventListener("DOMContentLoaded", () => {
       window.addEventListener("pageshow", (event) => {
         const dayInput = document.getElementById("dayInput");
         dayInput.style.display = "none";
         otherDayRow.style.display = "none";
-        // const dayInput = document.getElementById("dayInput");
-        // dayInput.value = "";
-        // dayInput.addEventListener("change", () => {
-        //   console.log("OK");
-
-        //   const date = new Date(`${dayInput.value}T00:00:00Z`);
-        //   const formattedDate = new Intl.DateTimeFormat("ru-RU", {
-        //     day: "numeric",
-        //     month: "long",
-        //     timeZone: "UTC",
-        //   }).format(date);
-        //   otherDayLink.href = `/BAkunin/index.html?date=${encodeURIComponent(
-        //     formattedDate.toUpperCase()
-        //   )}`;
-        //   otherDayLink.textContent = formattedDate;
-        //   otherDayRow.style.display = "table-row";
-        // });
       });
       function selectDate() {
         dayInput.style.display = "table-row";
