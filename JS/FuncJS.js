@@ -32,13 +32,16 @@ async function fetchData(md) {
 async function htmlFill() {
   nextPage();
   await initDB();
+  todayIcon = document.getElementById("todayIcon");
   let prmDate = new URLSearchParams(window.location.search).get("date");
   if (prmDate == null || prmDate == curDay) {
     curDay = new Date()
       .toLocaleDateString("ru-RU", { day: "numeric", month: "long" })
       .toUpperCase();
+    todayIcon.style.display = "none";
   } else {
     curDay = prmDate;
+    todayIcon.style.display = "block";
   }
   await fetchData(curDay);
   curDay = prmDate;
